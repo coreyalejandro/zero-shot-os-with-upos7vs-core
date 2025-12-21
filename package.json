@@ -54,7 +54,7 @@
     "governance:api:dev": "tsx --watch packages/api/server.ts",
     "export:modes": "tsx packages/cli/export-data.ts -- --type modes",
     "import:data": "tsx packages/cli/import-data.ts",
-    "purge:all": "rm -rf ~/.upos7vs && echo '✅ All data purged'",
+    "purge:all": "rm -rf ~/.upos7vs && echo '\u2705 All data purged'",
     "cleanup:old-data": "tsx packages/cli/cleanup-data.ts",
     "smoke:e2e": "tsx automation/smoke-e2e.ts",
     "docs:check": "node --import tsx automation/docs-control.ts --strict",
@@ -65,7 +65,9 @@
     "zero-shot:guard": "node --import tsx automation/zero-shot-guard.ts",
     "zero-shot:sentinel": "node --import tsx automation/zero-shot-sentinel.ts",
     "zero-shot:sentinel:install": "node --import tsx automation/install-zero-shot-sentinel-launchd.ts",
-    "zero-shot:notify:install": "node --import tsx automation/install-zero-shot-notify-launchd.ts"
+    "zero-shot:notify:install": "node --import tsx automation/install-zero-shot-notify-launchd.ts",
+    "session:log": "node scripts/session-log.cjs",
+    "hooks:install": "node scripts/install-githooks.cjs"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",

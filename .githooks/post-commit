@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+commit_hash="$(git rev-parse HEAD)"
+commit_msg="$(git log -1 --pretty=%s)"
+
+node "${repo_root}/scripts/session-log.cjs" --auto "${commit_hash} ${commit_msg}"
