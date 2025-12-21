@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenMemory Document Schema",
+  "description": "Schema for validating openmemory.md structure",
+  "type": "object",
+  "required": ["facts", "decisions", "risks", "todos"],
+  "properties": {
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "addedAt"],
+        "properties": {
+          "id": { "type": "string" },
+          "statement": { "type": "string" },
+          "addedAt": { "type": "string", "format": "date-time" },
+          "source": { "type": "string" }
+        }
+      },
+      "description": "Factual statements about the project"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "decision", "rationale", "decidedAt"],
+        "properties": {
+          "id": { "type": "string" },
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" },
+          "decidedAt": { "type": "string", "format": "date-time" },
+          "alternatives": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "description": "Key decisions made during development"
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "risk", "likelihood", "impact"],
+        "properties": {
+          "id": { "type": "string" },
+          "risk": { "type": "string" },
+          "likelihood": { "type": "string", "enum": ["low", "medium", "high"] },
+          "impact": { "type": "string", "enum": ["low", "medium", "high"] },
+          "mitigation": { "type": "string" }
+        }
+      },
+      "description": "Identified risks and their mitigations"
+    },
+    "todos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "task", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "task": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "in-progress", "completed"] },
+          "assignee": { "type": "string" },
+          "dueDate": { "type": "string", "format": "date" }
+        }
+      },
+      "description": "Outstanding tasks and their status"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Repository ignores
+node_modules/
+.DS_Store
+.cursor/backups/
+.env
+.envrc
+.upos7vs/
+
+# OpenMemory - IDE/Assistant specific rules
+.cursor/rules/openmemory.mdc

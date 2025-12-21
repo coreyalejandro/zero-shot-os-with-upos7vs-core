@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Profile Schema",
+  "description": "Schema for validating USER_PROFILE.md structure",
+  "type": "object",
+  "required": ["role", "preferences", "accessibility"],
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "User's primary role (e.g., developer, designer, product manager)"
+    },
+    "preferences": {
+      "type": "object",
+      "required": ["communicationStyle", "outputFormat"],
+      "properties": {
+        "communicationStyle": {
+          "type": "string",
+          "enum": ["concise", "detailed", "teaching", "minimal"],
+          "description": "Preferred communication style"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": ["markdown", "json", "plain", "structured"],
+          "description": "Preferred output format"
+        },
+        "reasoningDepth": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 7,
+          "default": 5,
+          "description": "Depth of reasoning layers (1-7)"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "screenReader": {
+          "type": "boolean",
+          "default": false
+        },
+        "keyboardOnly": {
+          "type": "boolean",
+          "default": false
+        },
+        "highContrast": {
+          "type": "boolean",
+          "default": false
+        },
+        "reduceMotion": {
+          "type": "boolean",
+          "default": false
+        },
+        "neurodivergent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether user benefits from neurodivergent-friendly UX"
+        }
+      }
+    },
+    "technicalContext": {
+      "type": "object",
+      "properties": {
+        "primaryLanguages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "frameworks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "experience": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "expert"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+graph TB
+    subgraph "User Interfaces"
+        CLI[CLI Interface]
+        Dashboard[Next.js Dashboard]
+        Petris[Petris Visual Builder]
+    end
+
+    subgraph "Core Orchestration Layer"
+        Orchestrator[Orchestrator]
+        ModeRouter[Mode Router Service]
+        Analytics[Analytics Service]
+        Governance[Governance Service]
+    end
+
+    subgraph "LLM Council"
+        Council[Council Coordinator]
+        Voting[Voting Engine]
+        Chairman[Chairman Synthesizer]
+    end
+
+    subgraph "Provider Adapters"
+        OpenAI[OpenAI Adapter]
+        Anthropic[Anthropic Adapter]
+        Ollama[Ollama Adapter]
+        Watson[Watson Adapter]
+        Google[Google Adapter]
+    end
+
+    subgraph "Storage & State"
+        ConfigStore[(Config JSON)]
+        MetricsStore[(Metrics JSONL)]
+        HistoryStore[(Prompt History)]
+        GovernanceArtifacts[(Governance Artifacts)]
+    end
+
+    subgraph "Governance Artifacts (Required)"
+        Handoff[HANDOFF.md]
+        Memory[openmemory.md]
+        Profile[USER_PROFILE.md]
+        ArchDiagram[ARCHITECTURE.mermaid]
+    end
+
+    subgraph "External APIs"
+        OpenAIAPI[OpenAI API]
+        AnthropicAPI[Anthropic API]
+        OllamaAPI[Ollama Local]
+        WatsonAPI[IBM Watson]
+        GoogleAPI[Google AI]
+    end
+
+    %% User interactions
+    CLI --> Orchestrator
+    Dashboard --> Orchestrator
+    Petris --> Council
+
+    %% Orchestration flow
+    Orchestrator --> ModeRouter
+    Orchestrator --> Analytics
+    Orchestrator --> Governance
+    ModeRouter --> Orchestrator
+
+    %% Council flow
+    Council --> Voting
+    Voting --> Chairman
+    Council --> Orchestrator
+
+    %% Provider routing
+    Orchestrator --> OpenAI
+    Orchestrator --> Anthropic
+    Orchestrator --> Ollama
+    Orchestrator --> Watson
+    Orchestrator --> Google
+
+    %% External API calls
+    OpenAI --> OpenAIAPI
+    Anthropic --> AnthropicAPI
+    Ollama --> OllamaAPI
+    Watson --> WatsonAPI
+    Google --> GoogleAPI
+
+    %% Storage interactions
+    Orchestrator --> ConfigStore
+    Analytics --> MetricsStore
+    Orchestrator --> HistoryStore
+    Governance --> GovernanceArtifacts
+
+    %% Governance artifact checks
+    Governance --> Handoff
+    Governance --> Memory
+    Governance --> Profile
+    Governance --> ArchDiagram
+
+    %% Council storage
+    Council --> ConfigStore
+
+    classDef userInterface fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef coreService fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef provider fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef storage fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef external fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef governance fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef council fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+
+    class CLI,Dashboard,Petris userInterface
+    class Orchestrator,ModeRouter,Analytics,Governance coreService
+    class OpenAI,Anthropic,Ollama,Watson,Google provider
+    class ConfigStore,MetricsStore,HistoryStore,GovernanceArtifacts storage
+    class OpenAIAPI,AnthropicAPI,OllamaAPI,WatsonAPI,GoogleAPI external
+    class Handoff,Memory,Profile,ArchDiagram governance
+    class Council,Voting,Chairman council
