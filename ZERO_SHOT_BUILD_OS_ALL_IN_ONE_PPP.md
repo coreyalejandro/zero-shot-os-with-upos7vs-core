@@ -2070,8 +2070,12 @@ set -euo pipefail
 
 export REPO_ROOT="${REPO_ROOT:-$(pwd)}"
 export COUNCIL_ROOT="${COUNCIL_ROOT:-$HOME/dev/llm-council}"
-export coreyalejandro="${coreyalejandro:-coreyalejandro}"
+export YOUR_ORG="${YOUR_ORG:-coreyalejandro}"
 export YOUR_EMAIL="${YOUR_EMAIL:-enterprise@upos7vs.com}"
+
+if [ -f "/Users/coreyalejandro/devs/AppleScriptUI/app-cleaner.applescript" ]; then
+  osascript "/Users/coreyalejandro/devs/AppleScriptUI/app-cleaner.applescript"
+fi
 
 test -d "$REPO_ROOT" && echo "✅ Repo root: $REPO_ROOT" || (echo "❌ Missing repo root: $REPO_ROOT" && exit 1)
 test -d "$COUNCIL_ROOT/backend" && echo "✅ Council backend present" || (echo "❌ Missing council backend: $COUNCIL_ROOT/backend" && exit 1)
@@ -2092,7 +2096,7 @@ npm ci
 ```bash
 set -euo pipefail
 
-test -n "$REPO_ROOT" && test -n "$COUNCIL_ROOT" && test -n "$coreyalejandro" && echo "✅ Env vars set" || echo "❌ Missing env vars"
+test -n "$REPO_ROOT" && test -n "$COUNCIL_ROOT" && test -n "$YOUR_ORG" && echo "✅ Env vars set" || echo "❌ Missing env vars"
 ```
 
 #### STEP 0.1: Create Governance API Endpoints
