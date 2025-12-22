@@ -1,0 +1,136 @@
+flowchart LR
+  %% Zero-Shot OS: End-to-end architecture with annotated flow and governance
+
+  subgraph UI[User Interfaces]
+    UI1[CLI]
+    UI2[SDK / Programmatic API]
+    UI3[Next.js Dashboard]
+    UI4[Petris Visual Builder]
+  end
+
+  subgraph OSS[UPOS7VS Core (Open Source)]
+    OSS1[Orchestrator\n(Core Engine)]
+    OSS2[Mode Router\n(Semantic intent + confidence)]
+    OSS3[UPOS7VS Normalizer\n(7-variable standardization)]
+    OSS4[Analytics Service\n(Cost + performance)]
+    OSS5[Governance Service\n(artifact checks)]
+    OSS6[LLM Council\n(Coordinator)]
+    OSS7[Voting Engine]
+    OSS8[Chairman Synthesizer]
+  end
+
+  subgraph ADP[Provider Adapters]
+    PA1[OpenAI Adapter]
+    PA2[Anthropic Adapter]
+    PA3[Ollama Adapter]
+    PA4[Watson Adapter]
+    PA5[Google Adapter]
+  end
+
+  subgraph EXT[External Model APIs]
+    EA1[OpenAI API]
+    EA2[Anthropic API]
+    EA3[Ollama Local]
+    EA4[IBM Watson]
+    EA5[Google AI]
+  end
+
+  subgraph STORE[Local Storage + State]
+    S1[(Config JSON)]
+    S2[(Metrics JSONL)]
+    S3[(Prompt History)]
+    S4[(Governance Artifacts)]
+  end
+
+  subgraph ENT[Zero Shot Build + Governance (Enterprise)]
+    B0[Zero Shot Brain\n(KB + inventory + golden paths)]
+    B1[Governance Policy Engine\n(Schemas + gates + approvals)]
+    B2[Reusable Component Registry\n(Code + docs + tests)]
+    B3[CI/CD Gates\n(Secrets + tests + schema + freshness)]
+    B4[Release Controller\n(Rollout + rollback + attestations)]
+    B5[Production Monitoring\n(SLOs + traces + incidents)]
+  end
+
+  subgraph GOV[Required Governance Artifacts]
+    G1[HANDOFF.md]
+    G2[openmemory.md]
+    G3[USER_PROFILE.md]
+    G4[ARCHITECTURE.mermaid]
+  end
+
+  %% UI to Core
+  UI1 --> OSS1
+  UI2 --> OSS1
+  UI3 --> OSS4
+  UI4 --> OSS6
+
+  %% Core orchestration flow
+  OSS1 --> OSS2
+  OSS2 --> OSS3
+  OSS3 --> OSS1
+  OSS1 --> OSS4
+  OSS1 --> OSS5
+  OSS6 --> OSS7 --> OSS8 --> OSS1
+
+  %% Provider routing
+  OSS1 --> PA1
+  OSS1 --> PA2
+  OSS1 --> PA3
+  OSS1 --> PA4
+  OSS1 --> PA5
+
+  %% External API calls
+  PA1 --> EA1
+  PA2 --> EA2
+  PA3 --> EA3
+  PA4 --> EA4
+  PA5 --> EA5
+
+  %% Storage
+  OSS1 --> S1
+  OSS4 --> S2
+  OSS1 --> S3
+  OSS5 --> S4
+
+  %% Governance artifact checks
+  OSS5 --> G1
+  OSS5 --> G2
+  OSS5 --> G3
+  OSS5 --> G4
+
+  %% Enterprise governance loop
+  B0 --> B1 --> B3 --> B4 --> B5 --> B0
+  B0 --> B2
+  UI4 --> B1
+
+  %% OSS <-> Enterprise interoperability
+  OSS1 <--> B0
+  OSS5 <--> B1
+  OSS4 --> B0
+
+  %% Annotations
+  A1["Annotation: Brain-first rule\nAlways check Brain inventory\nbefore new work"]:::note -.-> B0
+  A2["Annotation: Deterministic artifacts\nGovernance service validates\nrequired docs + schemas"]:::note -.-> OSS5
+  A3["Annotation: Privacy-first\nLocal storage by default;\nexternal calls only via adapters"]:::note -.-> STORE
+  A4["Annotation: Council governance\nUsed for high-risk changes\nand policy-bound decisions"]:::note -.-> OSS6
+  A5["Annotation: CI/CD evidence\nAttestations required for\nrelease and audits"]:::note -.-> B4
+
+  classDef ui fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+  classDef core fill:#fff3e0,stroke:#e65100,stroke-width:2px
+  classDef council fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+  classDef adapter fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+  classDef external fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+  classDef store fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+  classDef enterprise fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+  classDef governance fill:#ede7f6,stroke:#4527a0,stroke-width:2px
+  classDef note fill:#ffffff,stroke:#607d8b,stroke-width:1px,stroke-dasharray: 4 3
+
+  class UI1,UI2,UI3,UI4 ui
+  class OSS1,OSS2,OSS3,OSS4,OSS5 core
+  class OSS6,OSS7,OSS8 council
+  class PA1,PA2,PA3,PA4,PA5 adapter
+  class EA1,EA2,EA3,EA4,EA5 external
+  class S1,S2,S3,S4 store
+  class B0,B1,B2,B3,B4,B5 enterprise
+  class G1,G2,G3,G4 governance
+  class A1,A2,A3,A4,A5 note

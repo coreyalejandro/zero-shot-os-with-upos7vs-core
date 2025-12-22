@@ -1,110 +1,250 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#e1f5ff', 'primaryTextColor':'#01579b', 'primaryBorderColor':'#01579b', 'lineColor':'#01579b', 'secondaryColor':'#fff3e0', 'tertiaryColor':'#f3e5f5', 'background':'#ffffff', 'mainBkg':'#ffffff', 'secondBkg':'#f5f5f5', 'tertiaryBkg':'#fafafa'}}}%%
+
 graph TB
-    subgraph "User Interfaces"
-        CLI[CLI Interface]
-        Dashboard[Next.js Dashboard]
-        Petris[Petris Visual Builder]
+    %% ============================================
+    %% USER INTERFACES LAYER
+    %% ============================================
+    subgraph UI["🎨 User Interfaces"]
+        direction TB
+        CLI["`**CLI Interface**<br/>Command-line entry point<br/>Direct orchestrator access`"]
+        Dashboard["`**Next.js Dashboard**<br/>Web UI for analytics & governance<br/>Real-time metrics visualization`"]
+        API["`**Governance API**<br/>Fastify REST server<br/>CI/CD integration endpoints`"]
     end
 
-    subgraph "Core Orchestration Layer"
-        Orchestrator[Orchestrator]
-        ModeRouter[Mode Router Service]
-        Analytics[Analytics Service]
-        Governance[Governance Service]
+    %% ============================================
+    %% CORE ORCHESTRATION LAYER
+    %% ============================================
+    subgraph Core["⚙️ Core Orchestration Layer"]
+        direction TB
+        Orchestrator["`**UPOSOrchestrator**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Central coordinator<br/>• Manages service lifecycle<br/>• Processes prompt requests<br/>• Coordinates mode detection<br/>• Handles evaluation pipeline<br/>• Records analytics metrics`"]
+        
+        subgraph Services["Core Services"]
+            ModeRouter["`**Mode Router Service**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Prefix detection (UPOS7VS-*)<br/>• Semantic routing (embeddings)<br/>• Keyword-based fallback<br/>• Mode rules management<br/>• Confidence scoring`"]
+            
+            Analytics["`**Analytics Service**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Prompt metrics tracking<br/>• PII scrubbing (pre-storage)<br/>• JSONL metrics logging<br/>• Auto-flush buffering<br/>• Quality/cost/performance`"]
+            
+            Governance["`**Governance Service**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Artifact validation (JSON Schema)<br/>• Compliance checking<br/>• HANDOFF.md freshness<br/>• openmemory.md structure<br/>• USER_PROFILE.md validation`"]
+            
+            Telemetry["`**Telemetry Service**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• OpenTelemetry tracing<br/>• Span creation & attributes<br/>• Console exporter (dev)<br/>• Performance monitoring`"]
+        end
     end
 
-    subgraph "LLM Council"
-        Council[Council Coordinator]
-        Voting[Voting Engine]
-        Chairman[Chairman Synthesizer]
+    %% ============================================
+    %% TRUST & SAFETY LAYER
+    %% ============================================
+    subgraph Trust["🛡️ Trust & Safety Layer"]
+        direction TB
+        TransactionalStore["`**Transactional Store**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Immutable state mutations<br/>• Before/after snapshots<br/>• Undo/redo integration`"]
+        
+        UndoStack["`**Undo/Redo Stack**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Command history (max depth)<br/>• Reversible operations<br/>• Timestamp tracking`"]
+        
+        SnapshotManager["`**Snapshot Manager**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Bounded version history<br/>• Labeled checkpoints<br/>• Restore capabilities`"]
+        
+        SoftDelete["`**Soft Delete & Drafts**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• TTL-based recovery<br/>• Draft state management<br/>• Inline undo tokens`"]
+        
+        GuardrailNotifier["`**Guardrail Notifier**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Time-limited undo prompts<br/>• Expiring undo tokens<br/>• User notification system`"]
     end
 
-    subgraph "Provider Adapters"
-        OpenAI[OpenAI Adapter]
-        Anthropic[Anthropic Adapter]
-        Ollama[Ollama Adapter]
-        Watson[Watson Adapter]
-        Google[Google Adapter]
+    %% ============================================
+    %% MODE RULES & CONFIGURATION
+    %% ============================================
+    subgraph Config["📋 Configuration & Rules"]
+        direction TB
+        ConfigManager["`**Config Manager**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Global config (~/.upos7vs/)<br/>• Repo-scoped overrides<br/>• Undo/redo support<br/>• Snapshot capabilities`"]
+        
+        ModeRulesManager["`**Mode Rules Manager**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Loads .mdc rule files<br/>• Undo/redo for rule edits<br/>• Snapshot management<br/>• Soft delete with recovery`"]
+        
+        ModeRules["`**Mode Rules**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• core, uxui, dev, next<br/>• agent, long, handoff<br/>• Activation triggers<br/>• Content templates`"]
     end
 
-    subgraph "Storage & State"
-        ConfigStore[(Config JSON)]
-        MetricsStore[(Metrics JSONL)]
-        HistoryStore[(Prompt History)]
-        GovernanceArtifacts[(Governance Artifacts)]
+    %% ============================================
+    %% EVALUATION SYSTEM
+    %% ============================================
+    subgraph Eval["📊 Evaluation System"]
+        direction TB
+        EvalRunner["`**Eval Runner**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Sample rate control (0-1)<br/>• Fail-open strategy<br/>• PII scrubbing (pre-eval)<br/>• Engine fallback chain`"]
+        
+        subgraph Engines["Evaluation Engines"]
+            AetherEngine["`**Aether Engine**<br/>━━━━━━━━━━━━━━━━<br/>• External API evaluator<br/>• Quality scoring<br/>• Timeout handling`"]
+            
+            LLMGrader["`**LLM Grader Engine**<br/>━━━━━━━━━━━━━━━━<br/>• GPT-4o-mini grader<br/>• Structured evaluation<br/>• Cost tracking`"]
+            
+            HeuristicEngine["`**Heuristic Engine**<br/>━━━━━━━━━━━━━━━━<br/>• Dependency-free fallback<br/>• Length-based scoring<br/>• Apology detection`"]
+        end
     end
 
-    subgraph "Governance Artifacts (Required)"
-        Handoff[HANDOFF.md]
-        Memory[openmemory.md]
-        Profile[USER_PROFILE.md]
-        ArchDiagram[ARCHITECTURE.mermaid]
+    %% ============================================
+    %% SEMANTIC ROUTING
+    %% ============================================
+    subgraph Semantic["🧠 Semantic Routing"]
+        direction TB
+        EmbeddingsClient["`**Embeddings Client**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Provider-agnostic interface<br/>• Caching with TTL<br/>• Retry with backoff<br/>• Circuit breaker pattern`"]
+        
+        subgraph EmbedProviders["Embedding Providers"]
+            OpenAIEmbed["`**OpenAI Embeddings**<br/>text-embedding-3-small`"]
+            LocalEmbed["`**Local Embeddings**<br/>Fallback provider`"]
+        end
+        
+        ModeEmbeddings["`**Pre-computed Mode Embeddings**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Mode description vectors<br/>• Similarity matching<br/>• Confidence thresholds`"]
     end
 
-    subgraph "External APIs"
-        OpenAIAPI[OpenAI API]
-        AnthropicAPI[Anthropic API]
-        OllamaAPI[Ollama Local]
-        WatsonAPI[IBM Watson]
-        GoogleAPI[Google AI]
+    %% ============================================
+    %% PROVIDER ADAPTERS
+    %% ============================================
+    subgraph Providers["🔌 LLM Provider Adapters"]
+        direction TB
+        OpenAIAdapter["`**OpenAI Adapter**<br/>━━━━━━━━━━━━━━━━<br/>• GPT-4, GPT-3.5, etc.<br/>• Streaming support<br/>• Error handling`"]
+        
+        AnthropicAdapter["`**Anthropic Adapter**<br/>━━━━━━━━━━━━━━━━<br/>• Claude models<br/>• Message formatting<br/>• Token management`"]
+        
+        OllamaAdapter["`**Ollama Adapter**<br/>━━━━━━━━━━━━━━━━<br/>• Local LLM support<br/>• Model selection<br/>• Offline capability`"]
+        
+        WatsonAdapter["`**Watson Adapter**<br/>━━━━━━━━━━━━━━━━<br/>• IBM Watson integration<br/>• Enterprise models`"]
     end
 
-    %% User interactions
-    CLI --> Orchestrator
-    Dashboard --> Orchestrator
-    Petris --> Council
+    %% ============================================
+    %% UTILITIES
+    %% ============================================
+    subgraph Utils["🛠️ Utilities"]
+        direction TB
+        PIIScrubber["`**PII Scrubber**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Email, phone, SSN detection<br/>• API key masking<br/>• Credit card redaction<br/>• Configurable modes`"]
+        
+        RetryLogic["`**Retry & Circuit Breaker**<br/>━━━━━━━━━━━━━━━━━━━━━━━━<br/>• Exponential backoff<br/>• Failure threshold tracking<br/>• Automatic recovery`"]
+        
+        Logger["`**Logger**<br/>Structured logging`"]
+    end
 
-    %% Orchestration flow
-    Orchestrator --> ModeRouter
-    Orchestrator --> Analytics
-    Orchestrator --> Governance
-    ModeRouter --> Orchestrator
+    %% ============================================
+    %% STORAGE LAYER
+    %% ============================================
+    subgraph Storage["💾 Storage Layer"]
+        direction TB
+        ConfigStore[("`**Config Store**<br/>━━━━━━━━━━━━━━━━<br/>~/.upos7vs/config/config.json<br/>or repo-scoped`")]
+        
+        MetricsStore[("`**Metrics Store**<br/>━━━━━━━━━━━━━━━━<br/>analytics/data/metrics.jsonl<br/>PII-scrubbed entries`")]
+        
+        HistoryStore[("`**Prompt History**<br/>━━━━━━━━━━━━━━━━<br/>User interaction logs<br/>Max entries limit`")]
+        
+        GovernanceArtifacts[("`**Governance Artifacts**<br/>━━━━━━━━━━━━━━━━<br/>HANDOFF.md<br/>openmemory.md<br/>USER_PROFILE.md<br/>ARCHITECTURE.mermaid`")]
+        
+        RuleFiles[("`**Mode Rule Files**<br/>━━━━━━━━━━━━━━━━<br/>cursor/rules/*.mdc<br/>Source of truth`")]
+    end
 
-    %% Council flow
-    Council --> Voting
-    Voting --> Chairman
-    Council --> Orchestrator
+    %% ============================================
+    %% EXTERNAL APIS
+    %% ============================================
+    subgraph External["🌐 External APIs"]
+        direction TB
+        OpenAIAPI["`**OpenAI API**<br/>api.openai.com/v1`"]
+        AnthropicAPI["`**Anthropic API**<br/>api.anthropic.com`"]
+        OllamaAPI["`**Ollama Local**<br/>localhost:11434`"]
+        WatsonAPI["`**IBM Watson**<br/>Enterprise API`"]
+        AetherAPI["`**Aether API**<br/>api.aether.dev`"]
+    end
 
-    %% Provider routing
-    Orchestrator --> OpenAI
-    Orchestrator --> Anthropic
-    Orchestrator --> Ollama
-    Orchestrator --> Watson
-    Orchestrator --> Google
-
-    %% External API calls
-    OpenAI --> OpenAIAPI
-    Anthropic --> AnthropicAPI
-    Ollama --> OllamaAPI
-    Watson --> WatsonAPI
-    Google --> GoogleAPI
-
-    %% Storage interactions
-    Orchestrator --> ConfigStore
-    Analytics --> MetricsStore
-    Orchestrator --> HistoryStore
-    Governance --> GovernanceArtifacts
-
-    %% Governance artifact checks
-    Governance --> Handoff
-    Governance --> Memory
-    Governance --> Profile
-    Governance --> ArchDiagram
-
-    %% Council storage
-    Council --> ConfigStore
-
-    classDef userInterface fill:#e1f5ff,stroke:#01579b,stroke-width:2px
-    classDef coreService fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef provider fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef storage fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef external fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    classDef governance fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    classDef council fill:#e0f2f1,stroke:#004d40,stroke-width:2px
-
-    class CLI,Dashboard,Petris userInterface
-    class Orchestrator,ModeRouter,Analytics,Governance coreService
-    class OpenAI,Anthropic,Ollama,Watson,Google provider
-    class ConfigStore,MetricsStore,HistoryStore,GovernanceArtifacts storage
-    class OpenAIAPI,AnthropicAPI,OllamaAPI,WatsonAPI,GoogleAPI external
-    class Handoff,Memory,Profile,ArchDiagram governance
-    class Council,Voting,Chairman council
+    %% ============================================
+    %% FLOW CONNECTIONS
+    %% ============================================
+    
+    %% User Interface → Orchestrator
+    CLI -->|"processPrompt()"| Orchestrator
+    Dashboard -->|"API calls"| Orchestrator
+    API -->|"Governance checks"| Governance
+    
+    %% Orchestrator → Services
+    Orchestrator -->|"1. Detect mode"| ModeRouter
+    Orchestrator -->|"2. Get rules"| ModeRulesManager
+    Orchestrator -->|"3. Build prompt"| ModeRules
+    Orchestrator -->|"4. Optional evaluation"| EvalRunner
+    Orchestrator -->|"5. Record metrics"| Analytics
+    Orchestrator -->|"6. Trace spans"| Telemetry
+    
+    %% Mode Router → Semantic Routing
+    ModeRouter -->|"Semantic detection"| EmbeddingsClient
+    EmbeddingsClient -->|"Generate embeddings"| OpenAIEmbed
+    EmbeddingsClient -->|"Fallback"| LocalEmbed
+    EmbeddingsClient -->|"Compare similarity"| ModeEmbeddings
+    ModeRouter -->|"Load & manage"| ModeRulesManager
+    
+    %% Mode Rules Manager → Trust Layer
+    ModeRulesManager -->|"Reversible updates"| UndoStack
+    ModeRulesManager -->|"Version checkpoints"| SnapshotManager
+    ModeRulesManager -->|"Recoverable deletes"| SoftDelete
+    ModeRulesManager -->|"Read/write"| RuleFiles
+    
+    %% Config Manager → Trust Layer
+    ConfigManager -->|"State mutations"| TransactionalStore
+    ConfigManager -->|"Command history"| UndoStack
+    ConfigManager -->|"Checkpoints"| SnapshotManager
+    ConfigManager -->|"Persist"| ConfigStore
+    
+    %% Trust Layer Internal
+    TransactionalStore -->|"Attach stack"| UndoStack
+    UndoStack -->|"Bounded history"| SnapshotManager
+    SoftDelete -->|"TTL recovery"| GuardrailNotifier
+    
+    %% Evaluation System
+    EvalRunner -->|"Try Aether first"| AetherEngine
+    EvalRunner -->|"Fallback to LLM"| LLMGrader
+    EvalRunner -->|"Final fallback"| HeuristicEngine
+    EvalRunner -->|"Scrub PII"| PIIScrubber
+    AetherEngine -->|"API call"| AetherAPI
+    LLMGrader -->|"Uses"| OpenAIAdapter
+    
+    %% Analytics → Storage
+    Analytics -->|"PII-scrubbed metrics"| MetricsStore
+    Analytics -->|"Scrub before storage"| PIIScrubber
+    
+    %% Orchestrator → Providers
+    Orchestrator -->|"Route to provider"| OpenAIAdapter
+    Orchestrator -->|"Route to provider"| AnthropicAdapter
+    Orchestrator -->|"Route to provider"| OllamaAdapter
+    Orchestrator -->|"Route to provider"| WatsonAdapter
+    
+    %% Providers → External APIs
+    OpenAIAdapter -->|"HTTP requests"| OpenAIAPI
+    AnthropicAdapter -->|"HTTP requests"| AnthropicAPI
+    OllamaAdapter -->|"Local HTTP"| OllamaAPI
+    WatsonAdapter -->|"Enterprise API"| WatsonAPI
+    
+    %% Providers → Utilities
+    OpenAIAdapter -->|"Retry logic"| RetryLogic
+    AnthropicAdapter -->|"Retry logic"| RetryLogic
+    EmbeddingsClient -->|"Retry logic"| RetryLogic
+    
+    %% Governance → Artifacts
+    Governance -->|"Validate & check"| GovernanceArtifacts
+    Governance -->|"Schema validation"| ConfigManager
+    
+    %% Services → Storage
+    Orchestrator -->|"Read config"| ConfigStore
+    Orchestrator -->|"Log history"| HistoryStore
+    
+    %% Utilities
+    PIIScrubber -->|"Logging"| Logger
+    RetryLogic -->|"Logging"| Logger
+    
+    %% ============================================
+    %% STYLING
+    %% ============================================
+    classDef uiLayer fill:#e1f5ff,stroke:#01579b,stroke-width:3px,color:#000
+    classDef coreLayer fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#000
+    classDef trustLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:3px,color:#000
+    classDef configLayer fill:#e8f5e9,stroke:#1b5e20,stroke-width:3px,color:#000
+    classDef evalLayer fill:#fff9c4,stroke:#f57f17,stroke-width:3px,color:#000
+    classDef semanticLayer fill:#e0f2f1,stroke:#004d40,stroke-width:3px,color:#000
+    classDef providerLayer fill:#fce4ec,stroke:#880e4f,stroke-width:3px,color:#000
+    classDef utilLayer fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef storageLayer fill:#ede7f6,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef externalLayer fill:#ffebee,stroke:#b71c1c,stroke-width:2px,color:#000
+    
+    class CLI,Dashboard,API uiLayer
+    class Orchestrator,ModeRouter,Analytics,Governance,Telemetry coreLayer
+    class TransactionalStore,UndoStack,SnapshotManager,SoftDelete,GuardrailNotifier trustLayer
+    class ConfigManager,ModeRulesManager,ModeRules configLayer
+    class EvalRunner,AetherEngine,LLMGrader,HeuristicEngine evalLayer
+    class EmbeddingsClient,OpenAIEmbed,LocalEmbed,ModeEmbeddings semanticLayer
+    class OpenAIAdapter,AnthropicAdapter,OllamaAdapter,WatsonAdapter providerLayer
+    class PIIScrubber,RetryLogic,Logger utilLayer
+    class ConfigStore,MetricsStore,HistoryStore,GovernanceArtifacts,RuleFiles storageLayer
+    class OpenAIAPI,AnthropicAPI,OllamaAPI,WatsonAPI,AetherAPI externalLayer
