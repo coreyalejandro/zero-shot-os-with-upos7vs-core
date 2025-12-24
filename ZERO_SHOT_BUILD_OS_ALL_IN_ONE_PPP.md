@@ -120,6 +120,18 @@ flowchart LR
 ```
 
 ### 0.6 Deterministic Brain Inventory (File/Folder Contract)
+### 0.6.1 Per-Repo Component Inventory (Bootstrap)
+
+Each repo maintains a minimal, machine-readable component registry to keep modules swappable and dependency-graphable.
+
+**Canonical file (per repo):** `components.json`
+
+**Schema (per repo):** `COMPONENTS.schema.json`
+
+**Lite install:** `INSTALL_COMPONENT_INVENTORY.md`
+
+**Rule:** Keep this file small and current; no scripts required for initial install. Aggregation happens later via a separate module.
+
 
 The Brain must be **a deterministic folder tree** that can be mounted locally and validated in CI.
 

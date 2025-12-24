@@ -1,61 +1,61 @@
 flowchart LR
   %% Zero-Shot OS: End-to-end architecture with annotated flow and governance
 
-  subgraph UI[User Interfaces]
+  subgraph UI["User Interfaces"]
     UI1[CLI]
-    UI2[SDK / Programmatic API]
-    UI3[Next.js Dashboard]
-    UI4[Petris Visual Builder]
+    UI2["SDK / Programmatic API"]
+    UI3["Next.js Dashboard"]
+    UI4["Petris Visual Builder"]
   end
 
-  subgraph OSS[UPOS7VS Core (Open Source)]
-    OSS1[Orchestrator\n(Core Engine)]
-    OSS2[Mode Router\n(Semantic intent + confidence)]
-    OSS3[UPOS7VS Normalizer\n(7-variable standardization)]
-    OSS4[Analytics Service\n(Cost + performance)]
-    OSS5[Governance Service\n(artifact checks)]
-    OSS6[LLM Council\n(Coordinator)]
-    OSS7[Voting Engine]
-    OSS8[Chairman Synthesizer]
+  subgraph OSS["UPOS7VS Core (Open Source)"]
+    OSS1["Orchestrator<br/>(Core Engine)"]
+    OSS2["Mode Router<br/>(Semantic intent + confidence)"]
+    OSS3["UPOS7VS Normalizer<br/>(7-variable standardization)"]
+    OSS4["Analytics Service<br/>(Cost + performance)"]
+    OSS5["Governance Service<br/>(artifact checks)"]
+    OSS6["LLM Council<br/>(Coordinator)"]
+    OSS7["Voting Engine"]
+    OSS8["Chairman Synthesizer"]
   end
 
-  subgraph ADP[Provider Adapters]
-    PA1[OpenAI Adapter]
-    PA2[Anthropic Adapter]
-    PA3[Ollama Adapter]
-    PA4[Watson Adapter]
-    PA5[Google Adapter]
+  subgraph ADP["Provider Adapters"]
+    PA1["OpenAI Adapter"]
+    PA2["Anthropic Adapter"]
+    PA3["Ollama Adapter"]
+    PA4["Watson Adapter"]
+    PA5["Google Adapter"]
   end
 
-  subgraph EXT[External Model APIs]
-    EA1[OpenAI API]
-    EA2[Anthropic API]
-    EA3[Ollama Local]
-    EA4[IBM Watson]
-    EA5[Google AI]
+  subgraph EXT["External Model APIs"]
+    EA1["OpenAI API"]
+    EA2["Anthropic API"]
+    EA3["Ollama Local"]
+    EA4["IBM Watson"]
+    EA5["Google AI"]
   end
 
-  subgraph STORE[Local Storage + State]
-    S1[(Config JSON)]
-    S2[(Metrics JSONL)]
-    S3[(Prompt History)]
-    S4[(Governance Artifacts)]
+  subgraph STORE["Local Storage + State"]
+    S1[("Config JSON")]
+    S2[("Metrics JSONL")]
+    S3[("Prompt History")]
+    S4[("Governance Artifacts")]
   end
 
-  subgraph ENT[Zero Shot Build + Governance (Enterprise)]
-    B0[Zero Shot Brain\n(KB + inventory + golden paths)]
-    B1[Governance Policy Engine\n(Schemas + gates + approvals)]
-    B2[Reusable Component Registry\n(Code + docs + tests)]
-    B3[CI/CD Gates\n(Secrets + tests + schema + freshness)]
-    B4[Release Controller\n(Rollout + rollback + attestations)]
-    B5[Production Monitoring\n(SLOs + traces + incidents)]
+  subgraph ENT["Zero Shot Build + Governance (Enterprise)"]
+    B0["Zero Shot Brain<br/>(KB + inventory + golden paths)"]
+    B1["Governance Policy Engine<br/>(Schemas + gates + approvals)"]
+    B2["Reusable Component Registry<br/>(Code + docs + tests)"]
+    B3["CI/CD Gates<br/>(Secrets + tests + schema + freshness)"]
+    B4["Release Controller<br/>(Rollout + rollback + attestations)"]
+    B5["Production Monitoring<br/>(SLOs + traces + incidents)"]
   end
 
-  subgraph GOV[Required Governance Artifacts]
-    G1[HANDOFF.md]
-    G2[openmemory.md]
-    G3[USER_PROFILE.md]
-    G4[ARCHITECTURE.mermaid]
+  subgraph GOV["Required Governance Artifacts"]
+    G1["HANDOFF.md"]
+    G2["openmemory.md"]
+    G3["USER_PROFILE.md"]
+    G4["ARCHITECTURE.mermaid"]
   end
 
   %% UI to Core
@@ -109,11 +109,11 @@ flowchart LR
   OSS4 --> B0
 
   %% Annotations
-  A1["Annotation: Brain-first rule\nAlways check Brain inventory\nbefore new work"]:::note -.-> B0
-  A2["Annotation: Deterministic artifacts\nGovernance service validates\nrequired docs + schemas"]:::note -.-> OSS5
-  A3["Annotation: Privacy-first\nLocal storage by default;\nexternal calls only via adapters"]:::note -.-> STORE
-  A4["Annotation: Council governance\nUsed for high-risk changes\nand policy-bound decisions"]:::note -.-> OSS6
-  A5["Annotation: CI/CD evidence\nAttestations required for\nrelease and audits"]:::note -.-> B4
+  A1["Annotation: Brain-first rule<br/>Always check Brain inventory<br/>before new work"]:::note -.-> B0
+  A2["Annotation: Deterministic artifacts<br/>Governance service validates<br/>required docs + schemas"]:::note -.-> OSS5
+  A3["Annotation: Privacy-first<br/>Local storage by default;<br/>external calls only via adapters"]:::note -.-> STORE
+  A4["Annotation: Council governance<br/>Used for high-risk changes<br/>and policy-bound decisions"]:::note -.-> OSS6
+  A5["Annotation: CI/CD evidence<br/>Attestations required for<br/>release and audits"]:::note -.-> B4
 
   classDef ui fill:#e1f5ff,stroke:#01579b,stroke-width:2px
   classDef core fill:#fff3e0,stroke:#e65100,stroke-width:2px

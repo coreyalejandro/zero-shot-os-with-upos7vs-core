@@ -39,6 +39,17 @@ cd dashboard && npm install && npm run dev
 
 **You just saved 2-3 hours vs. manual multi-platform setup.**
 
+## Component Inventory (Zero-Shot Install)
+
+This repo ships with a minimal, per-repo `components.json` inventory to keep modules swappable and graphable.
+
+1. Open `components.json` in the repo root
+2. Update `repo.name` and `lastUpdated`
+3. Add or edit component entries as you go
+
+Details: `INSTALL_COMPONENT_INVENTORY.md`
+
+
 ## Why UPOS7VS?
 
 | Problem | UPOS7VS Solution |

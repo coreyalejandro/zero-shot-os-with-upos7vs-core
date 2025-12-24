@@ -1,0 +1,26 @@
+{
+  "$schema": "./COMPONENTS.schema.json",
+  "schemaVersion": "1.0.0",
+  "repo": {
+    "name": "zero-shot-os-with-upos7vs-core",
+    "root": ".",
+    "lastUpdated": "2025-01-15T10:30:00.000Z"
+  },
+  "components": [
+    {
+      "id": "zero-shot-os-with-upos7vs-core/component-inventory",
+      "name": "Component Inventory",
+      "type": "service",
+      "description": "Inventories components in this repo and exposes a machine-readable registry.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "location": ["apps/component-inventory"],
+      "interfaces": {
+        "inputs": ["repo path", "scan rules"],
+        "outputs": ["components.json", "components.graph.json"]
+      },
+      "dependencies": []
+    }
+  ]
+}
