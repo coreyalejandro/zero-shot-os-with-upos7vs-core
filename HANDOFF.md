@@ -6,7 +6,7 @@
 - Prior PPPs are superseded and retained for audit only.
 
 **Date:** 2025-12-25
-**Status:** ✅ Stable — Component inventory automation + guardrails added; Tier 1 standalone modules promoted; PPP updated with runtime boundary rule
+**Status:** ✅ Stable — Component inventory automation + guardrails added; Tier 1 standalone modules promoted; PPP policy summary added
 
 ---
 
@@ -14,14 +14,14 @@
 
 ```json
 {
-  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; Tier 1 standalone modules promoted (core utils + trust); PPP now defines runtime boundary rule and zero-shot minimums.",
+  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; Tier 1 standalone modules promoted (core utils + trust); PPP now includes policy summary and runtime boundary rule.",
   "nextSteps": [
     "Graduate Tier 2 modules (adapters, eval) once copy-test passes",
     "Document portability requirements per module (inputs/outputs/deps)",
     "Keep HANDOFF.md + openmemory.md aligned with component inventory changes"
   ],
   "blockers": [],
-  "lastUpdated": "2025-12-25T09:25:05.000Z",
+  "lastUpdated": "2025-12-25T09:33:07.000Z",
   "freshnessThreshold": 7
 }
 ```
@@ -29,6 +29,11 @@
 ---
 
 ## 📋 What Was Just Completed
+
+### 🧾 2025-12-25: PPP Policy Summary ✅
+
+- Added a non-negotiable Policy Summary near the top of the PPP.
+- Encodes runtime boundary, zero-shot minimums, prompt governance, ZSBC, and secrets handling.
 
 ### 🧾 2025-12-25: Runtime Boundary Rule (ZSB-RB-01) ✅
 

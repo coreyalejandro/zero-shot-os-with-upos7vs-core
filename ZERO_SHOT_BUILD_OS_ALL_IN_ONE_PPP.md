@@ -13,6 +13,17 @@
 
 ---
 
+## Policy Summary (Non-Negotiable)
+
+- **Canonical Source:** This PPP is the single source of truth for planning, execution, and verification.
+- **Runtime Boundary (ZSB-RB-01):** Node.js + TypeScript only for the zero-shot minimum. Python is not allowed in the zero-shot qualification path.
+- **Zero-Shot Minimum:** One full playable regime + corpus export + all ZSBC checks pass.
+- **Prompt Governance:** JSON is canonical; Markdown is generated and must be reproducible.
+- **ZSBC Enforcement:** No human intervention after start; immutable evidence bundle required.
+- **Secrets Handling:** Explicit env requirements and deterministic redaction.
+
+---
+
 ## Part 0 — System Definition + Brain-First Principle (Required Reading)
 
 ### 0.1 Naming (Single Source of Truth)
