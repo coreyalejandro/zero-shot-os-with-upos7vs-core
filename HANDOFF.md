@@ -6,7 +6,7 @@
 - Prior PPPs are superseded and retained for audit only.
 
 **Date:** 2025-12-25
-**Status:** ✅ Stable — Component inventory automation + guardrails added; standalone criteria tightened and phased rollout started
+**Status:** ✅ Stable — Component inventory automation + guardrails added; Tier 1 standalone modules promoted
 
 ---
 
@@ -14,14 +14,14 @@
 
 ```json
 {
-  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; phased standalone rollout started (Tier 1+2 marked non-standalone until portability is proven).",
+  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; Tier 1 standalone modules promoted (core utils + trust).",
   "nextSteps": [
-    "Graduate Tier 1 modules (core utils, trust) to standalone once copy-test passes",
+    "Graduate Tier 2 modules (adapters, eval) once copy-test passes",
     "Document portability requirements per module (inputs/outputs/deps)",
     "Keep HANDOFF.md + openmemory.md aligned with component inventory changes"
   ],
   "blockers": [],
-  "lastUpdated": "2025-12-25T08:45:18.000Z",
+  "lastUpdated": "2025-12-25T09:01:58.000Z",
   "freshnessThreshold": 7
 }
 ```
@@ -29,6 +29,12 @@
 ---
 
 ## 📋 What Was Just Completed
+
+### 🧾 2025-12-25: Tier 1 Standalone Promotion ✅
+
+- Promoted Tier 1 modules to standalone: `packages/core/utils`, `packages/core/trust`.
+- Updated `components.json` standalone flags and regenerated inventory artifacts.
+- Verified strict inventory checks and aggregates.
 
 ### 🧾 2025-12-25: Component Inventory System + Standalone Guardrails ✅
 

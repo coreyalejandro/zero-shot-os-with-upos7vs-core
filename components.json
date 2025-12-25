@@ -4,7 +4,7 @@
   "repo": {
     "name": "zero-shot-os-with-upos7vs-core",
     "root": ".",
-    "lastUpdated": "2025-12-25T07:46:37.000Z"
+    "lastUpdated": "2025-12-25T08:49:00.000Z"
   },
   "components": [
     {
@@ -134,7 +134,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": false,
+      "standalone": true,
       "location": [
         "packages/core/trust"
       ],
@@ -226,7 +226,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": false,
+      "standalone": true,
       "location": [
         "packages/core/utils"
       ],

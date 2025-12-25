@@ -7,14 +7,14 @@ Run `npm run components:build` after updating the registry.
 
 - Name: zero-shot-os-with-upos7vs-core
 - Root: .
-- Last Updated: 2025-12-25T07:46:37.000Z
+- Last Updated: 2025-12-25T08:49:00.000Z
 
 ## Summary
 
 - Total components: 10
 - By type: workflow=1, ui=1, package=6, service=2
 - By status: active=10
-- By standalone: standalone=1, non-standalone=9
+- By standalone: standalone=3, non-standalone=7
 
 ## Components
 
@@ -99,7 +99,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: false
+- Standalone: true
 - Owner: Core Team
 - Location: packages/core/trust
 - Description: Trust, safety, and rollback systems for policy enforcement.
@@ -159,7 +159,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: false
+- Standalone: true
 - Owner: Core Team
 - Location: packages/core/utils
 - Description: Shared utility helpers for logging, retries, and embeddings.
