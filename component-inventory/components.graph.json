@@ -1,10 +1,64 @@
 {
-  "updated": "2025-12-25T06:51:13.720Z",
+  "updated": "2025-12-25T07:44:54.440Z",
   "nodes": [
     {
       "id": "zero-shot-os-with-upos7vs-core/component-inventory-system",
       "name": "Component Inventory System",
       "type": "workflow",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/dashboard-app",
+      "name": "Dashboard App",
+      "type": "ui",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-engine",
+      "name": "Core Engine",
+      "type": "package",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/cli",
+      "name": "CLI",
+      "type": "service",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/api",
+      "name": "Governance API",
+      "type": "service",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-trust",
+      "name": "Trust & Safety Core",
+      "type": "package",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-adapters",
+      "name": "Model Adapters",
+      "type": "package",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-eval",
+      "name": "Evaluation Engine",
+      "type": "package",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-services",
+      "name": "Core Services",
+      "type": "package",
+      "repo": "zero-shot-os-with-upos7vs-core"
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-utils",
+      "name": "Core Utilities",
+      "type": "package",
       "repo": "zero-shot-os-with-upos7vs-core"
     }
   ],
