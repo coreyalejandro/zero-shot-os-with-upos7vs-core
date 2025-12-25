@@ -46,6 +46,7 @@
           "ownerName",
           "status",
           "version",
+          "standalone",
           "location",
           "interfaces",
           "dependencies"
@@ -88,6 +89,10 @@
           },
           "version": {
             "type": "string"
+          },
+          "standalone": {
+            "type": "boolean",
+            "description": "True if this component is portable and self-contained with its own docs."
           },
           "location": {
             "type": "array",

@@ -67,7 +67,11 @@
     "zero-shot:sentinel:install": "node --import tsx automation/install-zero-shot-sentinel-launchd.ts",
     "zero-shot:notify:install": "node --import tsx automation/install-zero-shot-notify-launchd.ts",
     "session:log": "node scripts/session-log.cjs",
-    "hooks:install": "node scripts/install-githooks.cjs"
+    "hooks:install": "node scripts/install-githooks.cjs",
+    "components:check": "tsx scripts/component-inventory/control.ts --strict --check-generated",
+    "components:build": "tsx scripts/component-inventory/control.ts --write",
+    "components:aggregate": "tsx scripts/component-inventory/aggregate.ts",
+    "components:summary": "tsx scripts/component-inventory/summary.ts"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",

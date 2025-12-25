@@ -1,0 +1,82 @@
+name: Component Inventory Guardrails
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - components.json
+      - COMPONENTS.schema.json
+      - scripts/component-inventory/**
+  push:
+    branches:
+      - main
+    paths:
+      - components.json
+      - COMPONENTS.schema.json
+      - scripts/component-inventory/**
+  schedule:
+    - cron: '0 6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: component-inventory-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  component-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate component inventory
+        run: npm run components:check
+
+      - name: Verify generated artifacts are committed
+        run: |
+          npm run components:build
+          npm run components:aggregate -- .
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Component inventory artifacts are out of date."
+            git status --porcelain
+            exit 1
+          fi
+
+      - name: Upload component inventory artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: component-inventory
+          path: |
+            component-inventory/COMPONENTS.md
+            component-inventory/components.index.json
+            component-inventory/components.graph.json
+
+      - name: Generate PR summary
+        if: github.event_name == 'pull_request'
+        run: |
+          BASE_REF=origin/${{ github.base_ref }} npx tsx scripts/component-inventory/summary.ts > component-inventory/summary.md
+
+      - name: Comment PR summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('component-inventory/summary.md', 'utf8');
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            await github.rest.issues.createComment({ owner, repo, issue_number, body });
