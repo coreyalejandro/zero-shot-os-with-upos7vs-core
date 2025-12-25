@@ -7,14 +7,14 @@ Run `npm run components:build` after updating the registry.
 
 - Name: zero-shot-os-with-upos7vs-core
 - Root: .
-- Last Updated: 2025-12-25T06:53:10.000Z
+- Last Updated: 2025-12-25T07:46:37.000Z
 
 ## Summary
 
 - Total components: 10
 - By type: workflow=1, ui=1, package=6, service=2
 - By status: active=10
-- By standalone: standalone=10
+- By standalone: standalone=1, non-standalone=9
 
 ## Components
 
@@ -39,7 +39,7 @@ Run `npm run components:build` after updating the registry.
 - Type: ui
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: dashboard
 - Description: Next.js dashboard application for Zero Shot OS.
@@ -54,7 +54,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core
 - Description: Core orchestration, config, and runtime services for Zero Shot OS.
@@ -69,7 +69,7 @@ Run `npm run components:build` after updating the registry.
 - Type: service
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/cli
 - Description: Command-line interface for configuration, exports, and governance checks.
@@ -84,7 +84,7 @@ Run `npm run components:build` after updating the registry.
 - Type: service
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/api
 - Description: Fastify API surface for governance checks and integrations.
@@ -99,7 +99,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core/trust
 - Description: Trust, safety, and rollback systems for policy enforcement.
@@ -114,7 +114,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core/adapters
 - Description: Adapter layer for model providers and backends.
@@ -129,7 +129,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core/eval
 - Description: Evaluation engine for policy, heuristic, and LLM grading.
@@ -144,7 +144,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core/services
 - Description: Service layer for analytics, telemetry, and mode routing.
@@ -159,7 +159,7 @@ Run `npm run components:build` after updating the registry.
 - Type: package
 - Status: active
 - Version: 0.1.0
-- Standalone: true
+- Standalone: false
 - Owner: Core Team
 - Location: packages/core/utils
 - Description: Shared utility helpers for logging, retries, and embeddings.

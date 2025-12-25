@@ -138,6 +138,16 @@ It fails if:
 - The generated report is missing or stale
 - A file exists under `components/` but is not listed
 
+## 7.5) Standalone Criteria (Strict)
+
+Only mark `standalone: true` when **all** of the following are true:
+
+- The component can run without relying on repo-level config or app wiring.
+- All required inputs are explicit (props/args/config documented).
+- The component has a co-located `README.md` describing setup and usage.
+- Copying the component folder + its declared deps is sufficient to use it.
+- No hidden coupling to sibling packages or global state.
+
 ## 8) Automatic Run on Install (Optional)
 
 If you want it to run on install, add to `package.json`:

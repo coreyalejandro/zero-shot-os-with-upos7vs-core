@@ -4,7 +4,7 @@
   "repo": {
     "name": "zero-shot-os-with-upos7vs-core",
     "root": ".",
-    "lastUpdated": "2025-12-25T06:53:10.000Z"
+    "lastUpdated": "2025-12-25T07:46:37.000Z"
   },
   "components": [
     {
@@ -40,7 +40,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "dashboard"
       ],
@@ -63,7 +63,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core"
       ],
@@ -88,7 +88,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/cli"
       ],
@@ -112,7 +112,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/api"
       ],
@@ -134,7 +134,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core/trust"
       ],
@@ -158,7 +158,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core/adapters"
       ],
@@ -180,7 +180,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core/eval"
       ],
@@ -204,7 +204,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core/services"
       ],
@@ -226,7 +226,7 @@
       "ownerName": "Core Team",
       "status": "active",
       "version": "0.1.0",
-      "standalone": true,
+      "standalone": false,
       "location": [
         "packages/core/utils"
       ],
