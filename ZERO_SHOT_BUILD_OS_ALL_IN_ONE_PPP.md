@@ -174,6 +174,31 @@ A Run is **Zero-Shot Buildable** only if:
 2. it produces an **immutable evidence bundle** sufficient for independent verification
 3. every requirement in ZSBC-1 through ZSBC-9 passes
 
+---
+
+### 0.8 Zero-Shot Minimums + Governance Sources of Truth
+
+**Runtime boundary (zero-shot target):**
+
+- **Default:** Node.js + TypeScript only.
+- **Python is optional** and only allowed if explicitly scoped in the TaskGraph with a strict I/O contract and evidence bundle.
+- If Python is introduced, it must be confined to **one of these responsibilities** and nothing else:
+  - **Offline evaluation engines** (e.g., scoring, grading, statistical analysis).
+  - **Optional analytics post-processing** that consumes only exported artifacts.
+  - **Experimental ML utilities** that do not block the core build.
+
+**Minimum zero-shot core feature set (to qualify as zero-shot):**
+
+- **One full playable regime** that executes end-to-end.
+- **Corpus export** produced as an immutable artifact.
+- All ZSBC checks pass (no human intervention, verifiable evidence).
+
+**Prompt governance source of truth (non-negotiable):**
+
+- **JSON is canonical.**
+- **Markdown is a generated view** for readability.
+- Drift is disallowed: generated Markdown must be reproducible from JSON.
+
 #### ZSBC-1 No Human Intervention Policy (Hard Constraint)
 
 - No interactive prompts. All commands must be non-interactive.
