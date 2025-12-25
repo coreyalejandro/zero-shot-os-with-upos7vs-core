@@ -5,8 +5,8 @@
 - **All-in-One PPP:** `ZERO_SHOT_BUILD_OS_ALL_IN_ONE_PPP.md` (canonical PRD/PPP)
 - Prior PPPs are superseded and retained for audit only.
 
-**Date:** 2025-12-21
-**Status:** ✅ Stable — PPP hardened for zero-shot build, App Router only, external references removed, markdownlint errors fixed
+**Date:** 2025-12-25
+**Status:** ✅ Stable — Component inventory automation + guardrails added; standalone criteria tightened and phased rollout started
 
 ---
 
@@ -14,14 +14,14 @@
 
 ```json
 {
-  "currentState": "All-in-One PPP hardened for zero-shot execution: fail-fast enforced, preflight checks added, App Router only, heredoc issues fixed, repo links updated to zero-shot-os-with-upos7vs-core, and external doc references removed.",
+  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; phased standalone rollout started (Tier 1+2 marked non-standalone until portability is proven).",
   "nextSteps": [
-    "Prepare minimal repo contents for migration to zero-shot-os-with-upos7vs-core",
-    "Copy required files into the new repo and update any remaining repo-specific links",
-    "Run governance checks in the new repo (npm run governance:check)"
+    "Graduate Tier 1 modules (core utils, trust) to standalone once copy-test passes",
+    "Document portability requirements per module (inputs/outputs/deps)",
+    "Keep HANDOFF.md + openmemory.md aligned with component inventory changes"
   ],
   "blockers": [],
-  "lastUpdated": "2025-12-21T14:22:10.000Z",
+  "lastUpdated": "2025-12-25T08:45:18.000Z",
   "freshnessThreshold": 7
 }
 ```
@@ -29,6 +29,14 @@
 ---
 
 ## 📋 What Was Just Completed
+
+### 🧾 2025-12-25: Component Inventory System + Standalone Guardrails ✅
+
+- Added inventory automation scripts + CI guardrails in this repo (build/check/aggregate/summary).
+- Added `standalone: true|false` to schema and registry with strict validation.
+- Tightened standalone criteria (doc + portability requirements).
+- Generated inventory artifacts: `component-inventory/COMPONENTS.md`, `components.index.json`, `components.graph.json`.
+- Marked major modules as non-standalone until copy-tested for safety-first modularity.
 
 ### 🧾 2025-12-21: Markdownlint Error Fixes ✅
 
@@ -838,11 +846,11 @@ tsx automation/test-suite.ts
 
 ## 📞 Quick Reference
 
-- **Project:** UPOS-7-VS Multiplatform
-- **Repository:** `upos7vs_multiplatform`
-- **Remote:** `github.com:coreyalejandro/upos7vs_multiplatform.git`
-- **Branch:** `master`
-- **Last Commit:** `40b036e` - "Enhance In-app Handoff Panel and Command Handling"
+- **Project:** Zero-Shot OS (UPOS7VS Core)
+- **Repository:** `zero-shot-os-with-upos7vs-core`
+- **Remote:** `github.com:coreyalejandro/zero-shot-os-with-upos7vs-core.git`
+- **Branch:** `main`
+- **Last Commit:** `b39e0e3` - "Tighten standalone criteria and flags"
 - **Next Commit:** Handoff reconciliation + docs alignment (HANDOFF/openmemory)
 - **Reading Order:** See `READING_ORDER.md` for navigation
 
