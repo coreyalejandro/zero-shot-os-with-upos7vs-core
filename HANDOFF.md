@@ -6,7 +6,7 @@
 - Prior PPPs are superseded and retained for audit only.
 
 **Date:** 2025-12-25
-**Status:** ✅ Stable — Component inventory automation + guardrails added; Tier 1 standalone modules promoted; PPP updated with zero-shot minimums
+**Status:** ✅ Stable — Component inventory automation + guardrails added; Tier 1 standalone modules promoted; PPP updated with runtime boundary rule
 
 ---
 
@@ -14,14 +14,14 @@
 
 ```json
 {
-  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; Tier 1 standalone modules promoted (core utils + trust); PPP now defines zero-shot minimums and governance source of truth.",
+  "currentState": "Component inventory automation + guardrails added with standalone metadata and strict validation; Tier 1 standalone modules promoted (core utils + trust); PPP now defines runtime boundary rule and zero-shot minimums.",
   "nextSteps": [
     "Graduate Tier 2 modules (adapters, eval) once copy-test passes",
     "Document portability requirements per module (inputs/outputs/deps)",
     "Keep HANDOFF.md + openmemory.md aligned with component inventory changes"
   ],
   "blockers": [],
-  "lastUpdated": "2025-12-25T09:18:02.000Z",
+  "lastUpdated": "2025-12-25T09:25:05.000Z",
   "freshnessThreshold": 7
 }
 ```
@@ -29,6 +29,11 @@
 ---
 
 ## 📋 What Was Just Completed
+
+### 🧾 2025-12-25: Runtime Boundary Rule (ZSB-RB-01) ✅
+
+- Added an explicit Node/TypeScript-only runtime boundary for zero-shot minimum.
+- Documented strict conditions for any future Python use (offline tooling only).
 
 ### 🧾 2025-12-25: PPP Zero-Shot Minimums + Prompt Governance Source of Truth ✅
 

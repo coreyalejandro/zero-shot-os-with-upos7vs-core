@@ -187,6 +187,17 @@ A Run is **Zero-Shot Buildable** only if:
   - **Optional analytics post-processing** that consumes only exported artifacts.
   - **Experimental ML utilities** that do not block the core build.
 
+**Runtime Boundary Rule (ZSB-RB-01):** The production and dev runtime for the zero-shot minimum is Node.js + TypeScript only. **No Python services are permitted in the zero-shot qualification path.** Any future Python use must be implemented as offline tooling (non-required for bootstrap/run/tests) unless a new explicit contract version elevates it.
+
+**Python boundary checklist (if used):**
+
+- **Non-blocking:** The core build must succeed without Python.
+- **Contracted I/O:** JSON in → JSON out, with schema validation.
+- **Deterministic artifacts:** Outputs are versioned and reproducible.
+- **No secrets in logs:** Explicit redaction in stdout/stderr.
+- **TaskGraph declared:** Step includes inputs, outputs, acceptance, and evidence.
+- **Isolation:** No direct modification of core runtime state.
+
 **Minimum zero-shot core feature set (to qualify as zero-shot):**
 
 - **One full playable regime** that executes end-to-end.
