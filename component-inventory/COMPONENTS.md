@@ -1,4 +1,4 @@
-# Components
+# Components Inventory
 
 This file is generated from `components.json`.
 Run `npm run components:build` after updating the registry.

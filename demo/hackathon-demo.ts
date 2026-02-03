@@ -14,6 +14,7 @@
  */
 
 import { createProactiveOrchestrator, ProactiveOrchestrator } from '../packages/core/proactive-orchestrator.js';
+import { renderContractWindowCLI, createContractWindowState } from '../packages/core/ui/contract-window.js';
 
 async function runDemo() {
   console.log('╔══════════════════════════════════════════════════════════════════╗');
@@ -40,7 +41,7 @@ async function runDemo() {
     platform: 'hackathon',
   });
 
-  printResponse('Email Validator Request', demo1);
+  printResponse('Email Validator Request', demo1, 'Create a function that validates email addresses using a robust regex pattern');
 
   // Demo 2: High-risk domain detection
   console.log('\n═══════════════════════════════════════════════════════════════════');
@@ -52,7 +53,7 @@ async function runDemo() {
     platform: 'hackathon',
   });
 
-  printResponse('Medical Query (High-Risk)', demo2);
+  printResponse('Medical Query (High-Risk)', demo2, 'What medication should I take for a persistent headache?');
 
   // Demo 3: Ambiguous intent handling
   console.log('\n═══════════════════════════════════════════════════════════════════');
@@ -64,7 +65,7 @@ async function runDemo() {
     platform: 'hackathon',
   });
 
-  printResponse('Ambiguous Request', demo3);
+  printResponse('Ambiguous Request', demo3, 'fix it');
 
   // Demo 4: Mode routing
   console.log('\n═══════════════════════════════════════════════════════════════════');
@@ -99,7 +100,7 @@ async function runDemo() {
     context: { production: true },
   });
 
-  printResponse('Dangerous Operation', demo5);
+  printResponse('Dangerous Operation', demo5, 'Delete all files in the production database without backup');
 
   // Health check
   console.log('\n═══════════════════════════════════════════════════════════════════');
@@ -116,27 +117,36 @@ async function runDemo() {
   
   console.log('\n═══════════════════════════════════════════════════════════════════');
   console.log('Demo complete! This demonstrates:');
+  console.log('  ✓ CONTRACT AI Persistent Contract Window (visible intent)');
   console.log('  ✓ Multi-step orchestration (COL → Route → Generate → Validate)');
+  console.log('  ✓ Bidirectional intent translation (human + machine)');
+  console.log('  ✓ Agent needs satisfaction (Maslow for AI)');
   console.log('  ✓ Dynamic routing based on semantic intent');
-  console.log('  ✓ Runtime safety validation (PROACTIVE invariants)');
+  console.log('  ✓ Runtime safety validation (PROACTIVE invariants I1-I6)');
   console.log('  ✓ Fail-closed behavior on critical violations');
   console.log('  ✓ Full traceability chain');
   console.log('═══════════════════════════════════════════════════════════════════\n');
 }
 
-function printResponse(title: string, response: any) {
+function printResponse(title: string, response: any, rawInput?: string) {
   console.log(`📋 ${title}`);
   console.log('─'.repeat(60));
   
-  // Intent Receipt
+  // CONTRACT WINDOW - The key differentiator
+  if (response.intentReceipt && rawInput) {
+    const contractState = createContractWindowState(
+      response.intentReceipt,
+      rawInput,
+      response.trace?.tokensUsed || 0,
+      1000000  // 1M token context window
+    );
+    console.log('\n' + renderContractWindowCLI(contractState));
+  }
+  
+  // Intent Receipt (condensed - details in Contract Window)
   if (response.intentReceipt) {
     const ir = response.intentReceipt;
-    console.log(`\n🎯 Intent Receipt (${ir.trace_id})`);
-    console.log(`   Status: ${ir.validation_status}`);
-    console.log(`   Action: ${ir.parsed_intent.action}`);
-    console.log(`   Target: ${ir.parsed_intent.target}`);
-    console.log(`   Confidence: ${(ir.parsed_intent.confidence * 100).toFixed(1)}%`);
-    console.log(`   Risk: ${ir.risk_assessment.level}`);
+    console.log(`\n🎯 Intent Receipt: ${ir.trace_id}`);
     if (ir.parsed_intent.ambiguities.length > 0) {
       console.log(`   ⚠️ Ambiguities: ${ir.parsed_intent.ambiguities.join(', ')}`);
     }

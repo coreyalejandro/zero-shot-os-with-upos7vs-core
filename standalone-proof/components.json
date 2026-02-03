@@ -1,0 +1,244 @@
+{
+  "$schema": "./COMPONENTS.schema.json",
+  "schemaVersion": "1.0.0",
+  "repo": {
+    "name": "zero-shot-os-with-upos7vs-core",
+    "root": ".",
+    "lastUpdated": "2025-12-25T08:49:00.000Z"
+  },
+  "components": [
+    {
+      "id": "zero-shot-os-with-upos7vs-core/component-inventory-system",
+      "name": "Component Inventory System",
+      "type": "workflow",
+      "description": "Validates components.json, generates COMPONENTS.md, and aggregates registries.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": true,
+      "location": [
+        "components.json",
+        "COMPONENTS.schema.json",
+        "component-inventory",
+        "scripts/component-inventory"
+      ],
+      "interfaces": {
+        "inputs": ["components.json", "COMPONENTS.schema.json", "repo paths"],
+        "outputs": [
+          "component-inventory/COMPONENTS.md",
+          "component-inventory/components.index.json",
+          "component-inventory/components.graph.json"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/dashboard-app",
+      "name": "Dashboard App",
+      "type": "ui",
+      "description": "Next.js dashboard application for Zero Shot OS.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "dashboard"
+      ],
+      "interfaces": {
+        "inputs": [
+          "routes",
+          "UI components"
+        ],
+        "outputs": [
+          "dashboard UI"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-engine",
+      "name": "Core Engine",
+      "type": "package",
+      "description": "Core orchestration, config, and runtime services for Zero Shot OS.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/core"
+      ],
+      "interfaces": {
+        "inputs": [
+          "runtime config",
+          "mode rules",
+          "provider adapters"
+        ],
+        "outputs": [
+          "orchestration decisions",
+          "telemetry events"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/cli",
+      "name": "CLI",
+      "type": "service",
+      "description": "Command-line interface for configuration, exports, and governance checks.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/cli"
+      ],
+      "interfaces": {
+        "inputs": [
+          "CLI commands",
+          "config files"
+        ],
+        "outputs": [
+          "config updates",
+          "reports"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/api",
+      "name": "Governance API",
+      "type": "service",
+      "description": "Fastify API surface for governance checks and integrations.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/api"
+      ],
+      "interfaces": {
+        "inputs": [
+          "HTTP requests"
+        ],
+        "outputs": [
+          "API responses"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-trust",
+      "name": "Trust & Safety Core",
+      "type": "package",
+      "description": "Trust, safety, and rollback systems for policy enforcement.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": true,
+      "location": [
+        "packages/core/trust"
+      ],
+      "interfaces": {
+        "inputs": [
+          "policy checks",
+          "state mutations"
+        ],
+        "outputs": [
+          "rollback data",
+          "audit trails"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-adapters",
+      "name": "Model Adapters",
+      "type": "package",
+      "description": "Adapter layer for model providers and backends.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/core/adapters"
+      ],
+      "interfaces": {
+        "inputs": [
+          "model requests"
+        ],
+        "outputs": [
+          "provider responses"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-eval",
+      "name": "Evaluation Engine",
+      "type": "package",
+      "description": "Evaluation engine for policy, heuristic, and LLM grading.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/core/eval"
+      ],
+      "interfaces": {
+        "inputs": [
+          "evaluation specs",
+          "run inputs"
+        ],
+        "outputs": [
+          "scores",
+          "evaluation logs"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-services",
+      "name": "Core Services",
+      "type": "package",
+      "description": "Service layer for analytics, telemetry, and mode routing.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": false,
+      "location": [
+        "packages/core/services"
+      ],
+      "interfaces": {
+        "inputs": [
+          "service requests"
+        ],
+        "outputs": [
+          "service responses"
+        ]
+      },
+      "dependencies": []
+    },
+    {
+      "id": "zero-shot-os-with-upos7vs-core/core-utils",
+      "name": "Core Utilities",
+      "type": "package",
+      "description": "Shared utility helpers for logging, retries, and embeddings.",
+      "ownerName": "Core Team",
+      "status": "active",
+      "version": "0.1.0",
+      "standalone": true,
+      "location": [
+        "packages/core/utils"
+      ],
+      "interfaces": {
+        "inputs": [
+          "utility parameters"
+        ],
+        "outputs": [
+          "utility results"
+        ]
+      },
+      "dependencies": []
+    }
+  ]
+}

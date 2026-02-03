@@ -54,7 +54,7 @@
     "governance:api:dev": "tsx --watch packages/api/server.ts",
     "export:modes": "tsx packages/cli/export-data.ts -- --type modes",
     "import:data": "tsx packages/cli/import-data.ts",
-    "purge:all": "rm -rf ~/.upos7vs && echo '\u2705 All data purged'",
+    "purge:all": "rm -rf ~/.upos7vs && echo '✅ All data purged'",
     "cleanup:old-data": "tsx packages/cli/cleanup-data.ts",
     "smoke:e2e": "tsx automation/smoke-e2e.ts",
     "docs:check": "node --import tsx automation/docs-control.ts --strict",
@@ -80,7 +80,7 @@
     "jest": "^30.2.0",
     "pino-pretty": "^11.3.0",
     "ts-jest": "^29.4.5",
-    "tsx": "^4.7.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {

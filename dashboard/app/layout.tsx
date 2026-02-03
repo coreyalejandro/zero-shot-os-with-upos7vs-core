@@ -47,6 +47,12 @@ export default function RootLayout({
                       Router Metrics
                     </Link>
                     <Link
+                      href="/component-inventory"
+                      className="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >
+                      Component Inventory
+                    </Link>
+                    <Link
                       href="/enterprise"
                       className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-semibold transition-colors"
                     >
@@ -63,4 +69,3 @@ export default function RootLayout({
     </html>
   );
 }
-
