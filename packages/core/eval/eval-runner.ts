@@ -3,6 +3,7 @@ import { EvalEngine, EvalInput, EvalResult } from './types.js';
 import { AetherEngine } from './engines/aether-engine.js';
 import { LlmGraderEngine } from './engines/llm-grader-engine.js';
 import { HeuristicEngine } from './engines/heuristic-engine.js';
+import { ProactiveEngine } from './engines/proactive-engine.js';
 import { UserConfig } from '../config.js';
 
 export type EvalRunnerOptions = {
@@ -106,6 +107,25 @@ export function buildEvalRunner(config: UserConfig): EvalRunner | null {
 
   if (evalConfig.engines?.heuristic?.enabled !== false) {
     engines.push(new HeuristicEngine());
+  }
+
+  // PROACTIVE Constitutional AI validator - always enabled for epistemic safety
+  // Uses type assertion since proactive config is optional extension
+  const proactiveConfig = (evalConfig.engines as Record<string, unknown>)?.proactive as {
+    enabled?: boolean;
+    strictMode?: boolean;
+    highRiskDomains?: string[];
+    confidenceThreshold?: number;
+  } | undefined;
+  
+  if (proactiveConfig?.enabled !== false) {
+    engines.push(
+      new ProactiveEngine({
+        strictMode: proactiveConfig?.strictMode ?? false,
+        highRiskDomains: proactiveConfig?.highRiskDomains,
+        confidenceThreshold: proactiveConfig?.confidenceThreshold,
+      })
+    );
   }
 
   if (engines.length === 0) {
