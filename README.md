@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
 
-> **Status:** practice sprint (December 2025 – February 2026), kept for the record. Its automated component-inventory check fails on the latest version.
+> **Status:** practice sprint (December 2025 – February 2026), kept for the record. Its automated component-inventory check fails on the latest version. See [CORRECTIONS.md](CORRECTIONS.md).
 
 ## What is UPOS7VS?
 
